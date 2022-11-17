@@ -15,8 +15,28 @@ class KitKatToaster(wpilib.TimedRobot):
             2,
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
+        # TODO
+        # after other two motors work
+
+        # self.fp_motor = CANSparkMax(
+        #     3,
+        #     CANSparkMaxLowLevel.MotorType.kBrushless,
+        # )
+        # self.fs_motor = CANSparkMax(
+        #     4,
+        #     CANSparkMaxLowLevel.MotorType.kBrushless,
+        # )
+        # self.port_motors = wpilib.SpeedControllerGroup(self.fp_motor, self.ap_motor)
+        # self.starboard_motors = wpilib.SpeedControllerGroup(
+        #     self.fs_motor, self.as_motor
+        # )
 
         # setting drive type
+        # TODO
+        # add with above
+        # self.robot_drive = wpilib.drive.DifferentialDrive(
+        #     self.port_motors, self.starboard_motors
+        # )
         self.robot_drive = wpilib.drive.DifferentialDrive(self.ap_motor, self.as_motor)
 
         # controls
