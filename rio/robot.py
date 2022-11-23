@@ -1,17 +1,18 @@
 #!/bin/python
-
 import wpilib
 from magicbot import MagicRobot
 
+# Vendor Libs
+from rev import CANSparkMax as CSM
+from rev import CANSparkMaxLowLevel as CSMLL
+
 # Components
-from components.component1 import Component1
-from components.component2 import Component2
+from components.drivetrain import Drivetrain
 
 
 class Robot(MagicRobot):
     # Define components here.
-    component1: Component1
-    component2: Component2
+    drivetrain: Drivetrain
 
     # Constants for components
     SOME_CONSTANT = 1
@@ -21,10 +22,10 @@ class Robot(MagicRobot):
         Initialize all wpilib motors & sensors
         """
 
-        self.component1_motor = wpilib.Talon(1)
-        self.some_motor = wpilib.Talon(2)
+        self.fp_motor = CSM(0, CSMLL.MotorType.kBrushless)
+        self.fs_motor = CSM(1, CSMLL.MotorType.kBrushless)
 
-        self.joystick = wpilib.Joystick(0)
+        self.driverStick = wpilib.Joystick(0)
 
     def teleopPeriodic(self):
         """
@@ -33,8 +34,10 @@ class Robot(MagicRobot):
         """
 
         try:
-            if self.joystick.getTrigger():
-                self.component2.do_something()
+            self.drivetrain.vectorDrive(
+                self.driverStick.getX(),
+                self.driverStick.getZ(),
+            )
         except:
             self.onException()
 
