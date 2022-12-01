@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Robot's ignores
+.deploy_cfg
+simgui-ds.json
+simgui.json
+simgui-window.json
