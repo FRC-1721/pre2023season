@@ -44,7 +44,7 @@ class KitKatToaster(wpilib.TimedRobot):
 
     def teleopPeriodic(self):
         # do when we have control
-        self.robot_drive.arcadeDrive(self.stick.getY(), self.stick.getZ() * -1)
+        self.robot_drive.arcadeDrive(self.stick.getZ() * -1 / 2, self.stick.getY() / 2)
 
 
 if __name__ == "__main__":
