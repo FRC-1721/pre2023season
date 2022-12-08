@@ -1,7 +1,7 @@
 import wpilib # the lib
 import wpilib.drive
 
-from rev import CANSparkMax,
+from rev import CANSparkMax
 from rev import CANSparkMaxLowLevel
 
 class myCringlance():
