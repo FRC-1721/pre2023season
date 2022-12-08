@@ -46,7 +46,7 @@ class KitKatToaster(wpilib.TimedRobot):
         # do when we have control
         self.robot_drive.arcadeDrive(
             self.stick.getZ() * -1 / 2, self.stick.getY() / 2
-        )  # 2.5 for kids
+        )  # for kids 2.5 = z __ = Y
 
 
 if __name__ == "__main__":
