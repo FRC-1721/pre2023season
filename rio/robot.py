@@ -40,13 +40,23 @@ class KitKatToaster(wpilib.TimedRobot):
         self.robot_drive = wpilib.drive.DifferentialDrive(self.ap_motor, self.as_motor)
 
         # controls
+        # stick
         self.stick = wpilib.Joystick(0)
+
+        # RE drive
+        self.portStick = wpilib.Joystick(1, 1)
+        self.starboardStick = wpilib.Joystick(1, 5)
 
     def teleopPeriodic(self):
         # do when we have control
+        # for joystick
         self.robot_drive.arcadeDrive(
-            self.stick.getZ() * -1 / 2, self.stick.getY() / 2
+            self.stick.getZ() * -1 / 2.5, self.stick.getY() / 2.5
         )  # for kids 2.5 = z 2.5 = Y for us 2 = x 2 = y
+
+        # for RE drive
+        self.ap_motor.set(self.protStick.getY() / 2)
+        self.as_motor.set(self.starboardStick.getY() / 2)
 
 
 if __name__ == "__main__":
