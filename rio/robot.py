@@ -44,7 +44,7 @@ class KitKatToaster(wpilib.TimedRobot):
         self.stick = wpilib.Joystick(0)
 
         # RE drive
-        self.controler = wpilib.Joystick(1)
+        # self.controler = wpilib.Joystick(1)
 
     def teleopPeriodic(self):
         # do when we have control
