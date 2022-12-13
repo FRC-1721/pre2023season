@@ -50,8 +50,8 @@ class KitKatToaster(wpilib.TimedRobot):
         # # do when we have control
         # # for joystick
         self.robot_drive.arcadeDrive(
-            self.stick.getZ() * -1 / 2.5, self.stick.getY() / 2.5
-        )  # for kids 2.5 = z 2.5 = Y for us 2 = x 2 = y
+            self.stick.getZ() * -1 / 2, self.stick.getY() * -1 / 2
+        )
 
         # for RE drive
         # self.ap_motor.set(self.controler.getRawAxis(1) / 6)
