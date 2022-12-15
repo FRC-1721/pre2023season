@@ -10,14 +10,16 @@ class Drivetrain(SubsystemBase):
     def __init__(self):
         super().__init__()
 
+        constants = getConstants("robot_hardware")
         self.drive_const = constants["drivetrain"]
+
         # motor declaration
         self.ap_motor = CANSparkMax(
-            1,
+            self.drive_const[ap_motor],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
         self.as_motor = CANSparkMax(
-            2,
+            self.drive_const[as_motor],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
         self.robot_drive = wpilib.drive.DifferentialDrive(self.ap_motor, self.as_motor)

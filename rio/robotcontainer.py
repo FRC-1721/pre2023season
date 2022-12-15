@@ -1,19 +1,9 @@
-# Subsystens
+# Subsystems
 from subsystems.drivetrain import Drivetrain
 
 
 class KitKatToaster(wpilib.TimedRobot):
     def robotInit(self):
-        # motor declaration
-        self.ap_motor = CANSparkMax(
-            1,
-            CANSparkMaxLowLevel.MotorType.kBrushless,
-        )
-        self.as_motor = CANSparkMax(
-            2,
-            CANSparkMaxLowLevel.MotorType.kBrushless,
-        )
-        self.robot_drive = wpilib.drive.DifferentialDrive(self.ap_motor, self.as_motor)
 
         # controls
         # stick
