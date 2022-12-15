@@ -1,13 +1,20 @@
 # Subsystems
 from subsystems.drivetrain import Drivetrain
 
+# Constants
+from constants.constants import getConstants
 
-class KitKatToaster(wpilib.TimedRobot):
-    def robotInit(self):
 
+class RobotContainer:
+    def __init__(self):
+
+        constants = getConstants("robot_controls")
+        self.control_const = constants["driver"]
+
+        self.drivetrain = Drivetrain.robot_drive
         # controls
         # stick
-        self.stick = wpilib.Joystick(0)
+        self.stick = wpilib.Joystick(self.control_const[controller_port])
 
         # RE drive
         # self.controler = wpilib.Joystick(1)
