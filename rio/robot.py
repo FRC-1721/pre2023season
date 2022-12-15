@@ -11,7 +11,7 @@ class MyRobot(wpilib.TimedRobot):
         self.joy = wpilib.Joystick(0) # fb
 
     def teleopPeriodic(self):
-        damp = .5
+        damp = .1
         if(self.joy.getZ()>.1 or self.joy.getZ()<-.1):
             self.mt1.set(self.joy.getZ()*damp)
             self.mt2.set(self.joy.getZ()*damp)
