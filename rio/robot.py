@@ -22,9 +22,11 @@ class Robot(MagicRobot):
         Initialize all wpilib motors & sensors
         """
 
+        # Motor controllers
         self.fp_motor = CSM(0, CSMLL.MotorType.kBrushless)
         self.fs_motor = CSM(1, CSMLL.MotorType.kBrushless)
 
+        # Driver input
         self.driverStick = wpilib.Joystick(0)
 
     def teleopPeriodic(self):

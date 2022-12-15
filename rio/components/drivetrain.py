@@ -2,6 +2,9 @@ import wpilib.drive
 
 from rev import CANSparkMax as CSM
 
+# NT
+from networktables import NetworkTables
+
 
 class Drivetrain:
     """
@@ -20,6 +23,11 @@ class Drivetrain:
         # Kinematics
         self.kmatic = wpilib.drive.DifferentialDrive(self.fp_motor, self.fs_motor)
 
+        nt = NetworkTables.getDefault()
+        sd = nt.getTable("SmartDashboard")
+
+        self.dashThro = sd.getEntry("/drive/value")
+
     def vectorDrive(self, thro, rot):
         """
         Takes a manual throttle and manual rotation
@@ -35,3 +43,6 @@ class Drivetrain:
         """
 
         self.kmatic.arcadeDrive(self.thro, self.rot)
+
+        # Add some important things to the dashboard
+        self.dashThro.setDouble(self.thro)
