@@ -12,10 +12,11 @@ class MyRobot(wpilib.TimedRobot):
 
     def teleopPeriodic(self):
         damp = .1
-        if(self.joy.getZ()>.1 or self.joy.getZ()<-.1):
+        square = .3
+        if(self.joy.getZ()>square or self.joy.getZ()<-square):
             self.mt1.set(self.joy.getZ()*damp)
             self.mt2.set(self.joy.getZ()*damp)
-        elif(self.joy.getY()>.1 or self.joy.getY()<-.1):
+        elif(self.joy.getY()>square or self.joy.getY()<-square):
             self.mt1.set(self.joy.getY()*damp)
             self.mt2.set(-self.joy.getY()*damp)
         else:
