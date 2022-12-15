@@ -1,6 +1,9 @@
 # Subsystems
 from subsystems.drivetrain import Drivetrain
 
+# Commands
+from commands.dampen import Dampen
+
 # Constants
 from constants.constants import getConstants
 
@@ -10,6 +13,7 @@ class RobotContainer:
 
         constants = getConstants("robot_controls")
         self.control_const = constants["driver"]
+        self.dampen = Dampen()
 
         self.drivetrain = Drivetrain.robot_drive
         # controls
@@ -19,11 +23,11 @@ class RobotContainer:
         # RE drive
         # self.controler = wpilib.Joystick(1)
 
-    def teleopPeriodic(self):
+    def teleop(self):
         # do when we have control
         # for joystick
         self.robot_drive.arcadeDrive(
-            self.stick.getZ() * -1 / 2, self.stick.getY() * -1 / 2
+            self.dampen(self.stick.getZ() * -1), self.dampen(self.stick.getY() * -1)
         )
 
         # for RE drive
