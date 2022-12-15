@@ -1,3 +1,5 @@
+import wpilib
+
 # Subsystems
 from subsystems.drivetrain import Drivetrain
 
@@ -15,10 +17,10 @@ class RobotContainer:
         self.control_const = constants["driver"]
         self.dampen = Dampen()
 
-        self.drivetrain = Drivetrain.robot_drive
+        self.drivetrain = Drivetrain()
         # controls
         # stick
-        self.stick = wpilib.Joystick(self.control_const[controller_port])
+        self.stick = wpilib.Joystick(self.control_const["controller_port"])
 
         # RE drive
         # self.controler = wpilib.Joystick(1)
@@ -26,8 +28,9 @@ class RobotContainer:
     def teleop(self):
         # do when we have control
         # for joystick
-        self.robot_drive.arcadeDrive(
-            self.dampen(self.stick.getZ() * -1), self.dampen(self.stick.getY() * -1)
+        self.drivetrain.robot_drive.arcadeDrive(
+            self.dampen.damp(self.stick.getZ() * -1),
+            self.dampen.damp(self.stick.getY() * -1),
         )
 
         # for RE drive

@@ -1,5 +1,5 @@
-class Dampen(self):
-    def __init__():
+class Dampen:
+    def __init__(self):
         pass
 
     def damp(self, thing):

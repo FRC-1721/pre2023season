@@ -1,3 +1,5 @@
+import wpilib
+
 from robotcontainer import RobotContainer
 
 
