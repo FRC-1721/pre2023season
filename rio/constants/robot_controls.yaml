@@ -1,0 +1,11 @@
+# This file defines the input
+# and control scheme of the robot,
+# Arranged into operating "modes"
+
+mode_a:
+  # Mode A is a driver-centric control mode
+  driver: # stick
+    controller_port: 0     # What usb port the driver controller is on
+
+
+
