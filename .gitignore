@@ -130,6 +130,7 @@ dmypy.json
 
 # Robot's ignores
 .deploy_cfg
+.installer_config
 simgui-ds.json
 simgui.json
 simgui-window.json
