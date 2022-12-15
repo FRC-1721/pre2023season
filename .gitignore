@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Robot Sim
+simgui*
+
+# dashboard build files
+dashboard/www/main.js*
+node_modules
+_staging

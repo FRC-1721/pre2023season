@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="background-color:rgb(78, 78, 78);">
+
+    <!-- Please replace with our own pack?-->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@next/webcomponents-loader.js"></script>
+
+    <!-- Our code! -->
+    <script src="main.js"></script>
+
+    <!-- This starts the NetworkTables websocket, it can be accessed from multiple
+     pages simultaneously -->
+    <script src="/networktables/networktables.js"></script>
+
+    <!-- utility functions to attach to a sendable chooser -->
+    <script src="/networktables/utils.js"></script>
+
+    <!-- Load styling -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <main class="wrapper">
+        <div class="connection_state">
+            NetworkTables websocket: <span id="connectstate">Unknown state</span>
+            Robot: <span id="robotstate">Unknown state</span> @ <span id="robotAddress">disconnected</span>
+        </div>
+    </main>
+
+    Gauge plz?
+    <nt-number key="/SmartDashboard/drive/value" value="-0.5"></nt-number>
+    <nt-number key="/SmartDashboard/drive/min" value="-1"></nt-number>
+    <nt-number key="/SmartDashboard/drive/max" value="1"></nt-number>
+    <frc-gauge source-key="/SmartDashboard/drive"></frc-gauge>
+
+</body>
+
+</html>
