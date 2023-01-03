@@ -3,6 +3,7 @@
 
 driver: # stick
   controller_port: 0     # What usb port the driver controller is on
-
-
-
+  steer: 1               # this is the wheels left to right turning
+  clutch: 2              # this is the left most peddle
+  brake: 3               # this is the middle peddle
+  accelerate: 4          # this is the right most peddle

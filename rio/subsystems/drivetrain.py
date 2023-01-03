@@ -24,5 +24,3 @@ class Drivetrain(SubsystemBase):
             self.drive_const["as_motor"],
             CANSparkMaxLowLevel.MotorType.kBrushless,
         )
-
-        self.robot_drive = wpilib.drive.DifferentialDrive(self.ap_motor, self.as_motor)

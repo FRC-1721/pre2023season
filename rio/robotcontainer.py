@@ -18,24 +18,115 @@ class RobotContainer:
         self.dampen = Dampen()
 
         self.drivetrain = Drivetrain()
-        # controls
-        # stick
-        self.stick = wpilib.Joystick(self.control_const["controller_port"])
 
-        # RE drive
-        # self.controler = wpilib.Joystick(1)
+        # controls
+        self.controler = wpilib.Joystick(self.control_const["controller_port"])
 
     def teleop(self):
-        # do when we have control
-        # for joystick
-        self.drivetrain.robot_drive.arcadeDrive(
-            self.dampen.damp(self.stick.getZ() * -1),
-            self.dampen.damp(self.stick.getY() * -1),
-        )
+        # changing dampening
+        if self.controler.getRawAxis(self.control_const["clutch"]) >= 0.1:
+            self.dampen.change()
 
-        # for RE drive
-        # self.as_motor.set(self.controler.getRawAxis(1) / 6)
-        # self.ap_motor.set(self.controler.getRawAxis(5) * -1 / 6)
+        # reverse
+        if self.controler.getRawAxis(self.control_const["brake"]) >= 0.1:
+
+            # right turn
+            if self.controler.getRawAxis(self.control_const["steer"]) >= 0.1:
+                self.drivetrain.ap_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                )
+                self.drivetrain.as_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=self.controler.getRawAxis(self.control_const["steer"]),
+                    )
+                    * -1
+                )
+
+            # left turn
+            elif self.controler.getRawAxis(self.control_const["steer"]) <= -0.1:
+                self.drivetrain.ap_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=self.controler.getRawAxis(self.control_const["steer"]),
+                    )
+                )
+                self.drivetrain.as_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                    * -1
+                )
+
+            # no turn
+            else:
+                self.drivetrain.ap_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                )
+                self.drivetrain.as_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                    * -1
+                )
+
+        # forward
+        elif self.controler.getRawAxis(self.control_const["accelerate"]) >= 0.1:
+            # right turn
+            if self.controler.getRawAxis(self.control_const["steer"]) >= 0.1:
+                self.drivetrain.ap_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                    * -1
+                )
+                self.drivetrain.as_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=self.controler.getRawAxis(self.control_const["steer"]),
+                    )
+                )
+
+            # left turn
+            elif self.controler.getRawAxis(self.control_const["steer"]) <= -0.1:
+                self.drivetrain.ap_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=self.controler.getRawAxis(self.control_const["steer"]),
+                    )
+                    * -1
+                )
+                self.drivetrain.as_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                )
+
+            # no turn
+            else:
+                self.drivetrain.ap_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                    * -1
+                )
+                self.drivetrain.as_motor.set(
+                    self.dampen.damp(
+                        self.controler.getRawAxis(self.control_const["brake"]),
+                        decrease=0,
+                    )
+                )
 
 
 if __name__ == "__main__":
